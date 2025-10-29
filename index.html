@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Dewi Sulissetyawati</title>
+    <!-- Favicon (inline SVG emoji) -->
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23fef3c7' width='100' height='100'/><text x='50' y='65' font-size='60' text-anchor='middle'>🌸</text></svg>">
+    <!-- Google Font: Poppins for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6d28d9;   /* deep violet */
+            --primary-dark: #5b21b6;
+            --secondary: #ff6b6b; /* coral / pink */
+            --accent: #f59e0b;    /* warm amber */
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --shadow: 0 12px 30px rgba(13, 16, 34, 0.12);
+        }
+
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+            line-height: 2;
+            color: var(--dark);
+            /* animated multi-color gradient */
+            background: linear-gradient(120deg, #ffe8a1 0%, #ffd1dc 25%, #c7b8ff 50%, #b6f0e0 75%, #ffe8a1 100%);
+            background-size: 800% 800%;
+            animation: gradientBG 20s ease infinite;
+            transition: background 0.3s ease;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: hsla(0, 0%, 100%, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            margin-top: 70px;
+            /* make hero transparent so animated page background shows through */
+            background: linear-gradient(rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-content .bio {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+        }
+
+        .profile-pic {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 10%);
+            background-size: 20px 20px;
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, 20px); }
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+    /* Experience Section */
+        .experience-section { 
+            padding: 4rem 1.5rem;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.85));
+        }
+
+        .experience-section .container-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .experience-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .experience-card {
+            background: #ffffff;
+            padding: 1.4rem;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(13,16,34,0.06);
+            border: 1px solid rgba(15,23,42,0.04);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            scroll-margin-top: 90px; /* so anchor links don't hide under fixed nav */
+        }
+
+        .experience-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(13,16,34,0.08);
+        }
+
+        .experience-card h3 {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .timeline-item { 
+            margin-bottom: 1.2rem;
+            padding-left: 0.8rem;
+            border-left: 3px solid rgba(109,40,217,0.08);
+        }
+
+        .timeline-item:before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-left: -19px;
+            margin-right: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .timeline-item h4 { margin: 0 0 0.25rem 0; color: var(--dark); font-size: 1rem; }
+        .timeline-item .company { color: var(--primary); font-weight:600; margin-bottom: 0.25rem; }
+        .timeline-item .period { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .timeline-item ul { list-style:none; padding-left:0; margin:0; color:var(--muted); }
+        .timeline-item ul li { margin-bottom:0.45rem; padding-left:1rem; position:relative; }
+
+        @media (max-width: 1024px) {
+            .experience-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 700px) {
+            .experience-container { grid-template-columns: 1fr; }
+            .experience-section { padding: 3rem 1rem; }
+            .section-title { font-size: 1.8rem; margin-bottom:1.6rem; }
+        }
+
+        .project-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* About Section */
+        #about {
+            background: rgb(235, 230, 230);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--primary);
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .whatsapp { background: #25D366; }
+        .email { background: #EA4335; }
+        .instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .tiktok { background: #000000; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                height: calc(100vh - 70px);
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.1rem;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Portofolio</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="closeMenu()">Beranda</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Proyek</a></li>
+                <li><a href="#experience" onclick="closeMenu()">Pengalaman</a></li>
+                <li><a href="#about" onclick="closeMenu()">Tentang</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Halo, Saya Dewi Sulissetyawati</h1>
+                <p class="tagline">Mahasiswa Teknik Informatika & Penggemar Drama 🎬</p>
+                <p class="bio">
+                    Saya seorang mahasiswa di Universitas Sultan Fatah yang ada di Demak yang passionate dalam dunia pemrograman web dan mobile. 
+                    Di waktu luang, saya senang menonton berbagai drama Malaysia, Korea dan Asia yang inspiratif. 
+                    Kombinasi antara coding dan storytelling membuat saya selalu termotivasi untuk menciptakan 
+                    aplikasi yang tidak hanya fungsional, tapi juga memberikan pengalaman pengguna yang memorable.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
+                    <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="Dewi CV.jpg" alt="Foto Profil" class="profile-pic">
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Proyek Saya</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🏠</div>
+                <div class="project-content">
+                    <h3>Website Properti Indah</h3>
+                    <p>Aplikasi web untuk jual, beli, dan sewa peoperti.</p>
+                    <a href="https://dewi0525.github.io/dewiutssmt5/" class="project-btn" target="_blank">Lihat Website →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🎲</div>
+                <div class="project-content">
+                    <h3>Game Ular Tangga Informatika</h3>
+                    <p>Game ular tangga interaktif yang dibangun dengan HTML, CSS, dan JavaScript. Dilengkapi dengan animasi dadu dan sistem pemain bergantian.</p>
+                    <a href="https://kecerdasanbuatansmt5-dewisulissetyawati.my.canva.site/" class="project-btn" target="_blank">Main Game →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">💼</div>
+                <div class="project-content">
+                    <h3>Portofolio Website</h3>
+                    <p>Website portofolio modern dan responsif yang bisa di lihat sekarang, didesain dengan prinsip UI/UX terkini dan optimasi mobile-first.</p>
+                    <a href="#home" class="project-btn">Anda Di Sini ✨</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <h2 class="section-title">Pengalaman</h2>
+        <div class="container-inner">
+            <div class="experience-container">
+                <div class="experience-card">
+                    <h3>Pendidikan Perguruan Tinggi</h3>
+                    <div class="timeline-item">
+                        <h4>Universitas Sultan Fatah</h4>
+                        <div class="company">Teknik Informatika</div>
+                        <div class="period">2023 - Sekarang</div>
+                        <ul>
+                            <li>Sedang menempuh pendidikan di program studi Teknik Informatika</li>
+                            <li>Fokus pada pengembangan aplikasi web dan mobile</li>
+                            <li>Aktif dalam kegiatan akademik dan organisasi kampus</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <h3>Pendidikan Menengah</h3>
+                    <div class="timeline-item">
+                        <h4>Sekolah Menengah Atas</h4>
+                        <div class="company">SMA Negeri 3 Demak</div>
+                        <div class="period">2020-2023</div>
+                        <ul>
+                            <li>Aktif di Organisasi OSIS dengan menjadi anggota SEKBID</li>
+                            <li>mewakili Kabupaten Demak di ajang Lomba Membaca dan Menulis Aksara Jawa tingkat Jawa Tengah</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-content">
+            <p>
+                Saya adalah mahasiswa yang sedang menempuh pendidikan di bidang teknologi informasi pada program studi Teknik Inormatika di Universitas Sultan Fatah Demak. 
+                Saya memiliki minat yang besar dalam dunia pemrograman, khususnya dalam pengembangan aplikasi web dan mobile.
+                Perjalanan saya di dunia programming dimulai dari rasa ingin tahu yang besar tentang 
+                bagaimana aplikasi dan website bekerja.
+            </p>
+            <div class="quote">
+                "Setiap baris kode adalah kesempatan untuk belajar sesuatu yang baru. 
+                Setiap drama yang saya tonton mengajarkan saya tentang karakter, cerita, dan kehidupan."
+            </div>
+            <p>
+                Motivasi terbesar saya adalah terus berkembang dan menciptakan sesuatu yang bermanfaat. 
+                Sama seperti karakter dalam drama favorit yang terus berjuang mencapai mimpi mereka, 
+                saya percaya bahwa dengan konsistensi dan kerja keras, tidak ada yang tidak mungkin.
+            </p>
+            <p>
+                <strong>Prinsip Hidup:</strong> Belajar dari kemarin, bekerja untuk hari ini, dan berharap untuk besok. 
+                Yang terpenting adalah tidak berhenti bertanya dan berinovasi.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <h3>Kirim Pesan</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Dewi Sulissetyawati</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; background: linear-gradient(135deg, #bb88cf, #d849dd); color: white;">Kirim Pesan</button>
+                    
+                </form>
+            </div>
+
+            <div class="social-links">
+                <a href="https://wa.me/6283838530086" class="social-link" target="_blank">
+                    <div class="social-icon whatsapp">📱</div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">+62 812-3456-7890</p>
+                    </div>
+                </a>
+
+                <a href="dewisulis508@gmail.com" class="social-link">
+                    <div class="social-icon email">✉</div>
+                    <div>
+                        <strong>Email</strong>
+                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">dewisulis508@gmail.com</p>
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/deewi_stywt?igsh=MWt5dXJ1ZjM2ajdiOQ==" class="social-link" target="_blank">
+                    <div class="social-icon instagram">📷</div>
+                    <div>
+                        <strong>Instagram</strong>
+                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">deewi_stywt</p>
+                    </div>
+                </a>
+
+                <a href="https://www.tiktok.com/@deewi_stywt?_t=ZS-90wSWVXeDn6&_r=1" class="social-link" target="_blank">
+                    <div class="social-icon tiktok">🎵</div>
+                    <div>
+                        <strong>TikTok</strong>
+                        <p style="margin: 0; color: var(--gray); font-size: 0.9rem;">deewi_stywt</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Dewi Sulissetyawati. Dibuat dengan ❤ untuk Tugas Pemrograman Perangkat Mobile</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim. Saya akan segera menghubungi Anda.');
+            this.reset();
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .social-link').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
